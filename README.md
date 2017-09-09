@@ -54,7 +54,7 @@ const Logger = require('@ladjs/logger');
 // ...
 
 app.use(new StoreIPAddress({
-  logger: new Logger();
+  logger: new Logger()
 }).middleware);
 ```
 
