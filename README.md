@@ -7,7 +7,7 @@
 [![made with lass](https://img.shields.io/badge/made_with-lass-95CC28.svg)](https://lass.js.org)
 [![license](https://img.shields.io/github/license/ladjs/store-ip-address.svg)](<>)
 
-> Stores user's IP address in the background
+> Stores user's IP address in the background for Lad
 
 
 ## Table of Contents
