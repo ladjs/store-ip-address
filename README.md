@@ -1,5 +1,7 @@
 # [**@ladjs/store-ip-address**](https://github.com/ladjs/store-ip-address)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ladjs/store-ip-address.svg)](https://greenkeeper.io/)
+
 [![build status](https://img.shields.io/travis/ladjs/store-ip-address.svg)](https://travis-ci.org/ladjs/store-ip-address)
 [![code coverage](https://img.shields.io/codecov/c/github/ladjs/store-ip-address.svg)](https://codecov.io/gh/ladjs/store-ip-address)
 [![code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
