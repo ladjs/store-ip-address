@@ -1,7 +1,7 @@
 {
   "name": "@ladjs/store-ip-address",
   "description": "Stores user's IP address in the background for Lad",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Nick Baugh <niftylettuce@gmail.com> (http://niftylettuce.com/)",
   "bugs": {
     "url": "https://github.com/ladjs/store-ip-address/issues",
