@@ -44,11 +44,12 @@
   dependencies:
     arrify "^1.0.1"
 
-"@ladjs/logger@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@ladjs/logger/-/logger-0.0.1.tgz#37c28bd8ba56240f879f5e187944ca55f00fc846"
+"@ladjs/logger@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@ladjs/logger/-/logger-0.0.3.tgz#818f9e769cf25d5fbfb07e3c5b85ddffa1b0faa7"
   dependencies:
     chalk "^2.1.0"
+    debug "^3.0.1"
     lodash "^4.17.4"
     underscore.string "^3.3.4"
 
@@ -1149,6 +1150,12 @@ debug@^2.1.1, debug@^2.2.0, debug@^2.6.3, debug@^2.6.8:
   dependencies:
     ms "2.0.0"
 
+debug@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-3.0.1.tgz#0564c612b521dc92d9f2988f0549e34f9c98db64"
+  dependencies:
+    ms "2.0.0"
+
 decamelize@^1.0.0, decamelize@^1.1.1, decamelize@^1.1.2:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
@@ -2114,8 +2121,8 @@ husky@^0.14.3:
     strip-indent "^2.0.0"
 
 iconv-lite@^0.4.17:
-  version "0.4.18"
-  resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.18.tgz#23d8656b16aae6742ac29732ea8f0336a4789cf2"
+  version "0.4.19"
+  resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
 
 ignore-by-default@^1.0.0:
   version "1.0.1"
@@ -4788,8 +4795,8 @@ sort-keys@^2.0.0:
     is-plain-obj "^1.0.0"
 
 source-map-support@^0.4.0, source-map-support@^0.4.15:
-  version "0.4.17"
-  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.17.tgz#6f2150553e6375375d0ccb3180502b78c18ba430"
+  version "0.4.18"
+  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.18.tgz#0286a6de8be42641338594e97ccea75f0a2c585f"
   dependencies:
     source-map "^0.5.6"
 

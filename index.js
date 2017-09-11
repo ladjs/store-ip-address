@@ -1,11 +1,8 @@
-const Logger = require('@ladjs/logger');
+const debug = require('debug')('@ladjs/store-ip-address');
 
 class StoreIPAddress {
   constructor(config = {}) {
-    this.config = Object.assign({ logger: new Logger() }, config);
-    this.logger = this.config.logger;
-    if (!(this.logger instanceof Logger))
-      throw new Error('`config.logger` must be a Logger instance');
+    this.config = Object.assign({ logger: console }, config);
   }
   middleware(ctx, next) {
     // return early if the user is not authenticated
@@ -15,13 +12,14 @@ class StoreIPAddress {
 
     // set the user's IP to the current one
     // make sure the IP's saved are unique
+    debug(`storing IP of ${ctx.req.ip} for user ${ctx.state.user.id}`);
     ctx.state.user.ip = ctx.req.ip;
     ctx.state.user.last_ips.push(ctx.req.ip);
     ctx.state.user.last_ips = [...new Set(ctx.state.user.last_ips)];
     ctx.state.user
       .save()
       .then()
-      .catch(this.logger.error);
+      .catch(this.config.logger.error.bind(this.config.logger));
 
     return next();
   }

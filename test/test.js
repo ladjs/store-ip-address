@@ -16,13 +16,6 @@ test('sets a custom logger instance', t => {
   );
 });
 
-test('throws on invalid logger instance', t => {
-  t.throws(() => {
-    // eslint-disable-next-line no-new
-    new StoreIPAddress({ logger: false });
-  });
-});
-
 test('returns early if user is not authenticated', t => {
   const ctx = {
     req: { ip: 'a' },
