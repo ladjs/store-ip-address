@@ -42,7 +42,8 @@ const StoreIPAddress = require('@ladjs/store-ip-address');
 
 // ...
 
-app.use(new StoreIPAddress().middleware);
+const storeIPAddress = new StoreIPAddress();
+app.use(storeIPAddress.middleware.bind(storeIPAddress));
 ```
 
 > With custom [logger][] instance:
@@ -53,9 +54,8 @@ const Logger = require('@ladjs/logger');
 
 // ...
 
-app.use(new StoreIPAddress({
-  logger: new Logger()
-}).middleware);
+const storeIPAddress = new StoreIPAddress({ logger: new Logger() });
+app.use(storeIPAddress.middleware.bind(storeIPAddress));
 ```
 
 
