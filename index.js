@@ -19,7 +19,7 @@ class StoreIPAddress {
     ctx.state.user
       .save()
       .then()
-      .catch(this.config.logger.error.bind(this.config.logger));
+      .catch(this.config.logger.error);
 
     return next();
   }

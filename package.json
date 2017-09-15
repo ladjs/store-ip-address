@@ -14,7 +14,7 @@
     "debug": "^3.0.1"
   },
   "devDependencies": {
-    "@ladjs/logger": "^0.0.3",
+    "@ladjs/logger": "^0.0.5",
     "ava": "^0.22.0",
     "codecov": "^2.3.0",
     "cross-env": "^5.0.5",
