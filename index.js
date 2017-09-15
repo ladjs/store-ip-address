@@ -1,7 +1,10 @@
+const autoBind = require('auto-bind');
 const debug = require('debug')('@ladjs/store-ip-address');
 
 class StoreIPAddress {
   constructor(config = {}) {
+    autoBind(this);
+
     this.config = Object.assign({ logger: console }, config);
   }
   middleware(ctx, next) {

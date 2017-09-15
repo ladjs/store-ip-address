@@ -44,10 +44,11 @@
   dependencies:
     arrify "^1.0.1"
 
-"@ladjs/logger@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@ladjs/logger/-/logger-0.0.3.tgz#818f9e769cf25d5fbfb07e3c5b85ddffa1b0faa7"
+"@ladjs/logger@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@ladjs/logger/-/logger-0.0.5.tgz#6c04066d027848433afd83f466641e56794719a6"
   dependencies:
+    auto-bind "^1.1.0"
     chalk "^2.1.0"
     debug "^3.0.1"
     lodash "^4.17.4"
