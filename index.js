@@ -1,5 +1,6 @@
 const autoBind = require('auto-bind');
 const debug = require('debug')('@ladjs/store-ip-address');
+const isIpPrivate = require('private-ip');
 
 class StoreIPAddress {
   constructor(config = {}) {
@@ -12,6 +13,12 @@ class StoreIPAddress {
     // or if the user's last ip changed then don't do anything
     if (!ctx.isAuthenticated() || ctx.state.user.ip === ctx.req.ip)
       return next();
+
+    // prevent storing user's ip if it's
+    // a private address in production
+    if (process.env.NODE_ENV === 'production' && isIpPrivate(ctx.req.ip)) {
+      return next();
+    }
 
     // set the user's IP to the current one
     // make sure the IP's saved are unique

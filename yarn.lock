@@ -3639,6 +3639,10 @@ pretty-ms@^2.0.0:
     parse-ms "^1.0.0"
     plur "^1.0.0"
 
+private-ip@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/private-ip/-/private-ip-1.0.5.tgz#22d0183fba09d0ec1a2a4e0f46feb771563d1449"
+
 private@^0.1.7:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/private/-/private-0.1.7.tgz#68ce5e8a1ef0a23bb570cc28537b5332aba63ef1"

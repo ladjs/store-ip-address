@@ -12,7 +12,8 @@
   ],
   "dependencies": {
     "auto-bind": "^1.1.0",
-    "debug": "^3.0.1"
+    "debug": "^3.0.1",
+    "private-ip": "^1.0.5"
   },
   "devDependencies": {
     "@ladjs/logger": "^0.0.5",
@@ -34,20 +35,14 @@
     "node": ">=8.3"
   },
   "homepage": "https://github.com/ladjs/store-ip-address",
-  "keywords": [
-    "@ladjs/store-ip-address",
-    "lass"
-  ],
+  "keywords": ["@ladjs/store-ip-address", "lass"],
   "license": "MIT",
   "lint-staged": {
     "*.{js,jsx,mjs,ts,tsx,css,less,scss,json,graphql}": [
       "prettier --write --single-quote --trailing-comma none",
       "git add"
     ],
-    "*.md": [
-      "remark . -qfo",
-      "git add"
-    ]
+    "*.md": ["remark . -qfo", "git add"]
   },
   "main": "index.js",
   "nyc": {
@@ -55,16 +50,10 @@
     "lines": 100,
     "functions": 100,
     "branches": 100,
-    "reporter": [
-      "lcov",
-      "html",
-      "text"
-    ]
+    "reporter": ["lcov", "html", "text"]
   },
   "remarkConfig": {
-    "plugins": [
-      "preset-github"
-    ]
+    "plugins": ["preset-github"]
   },
   "repository": {
     "type": "git",
@@ -79,9 +68,7 @@
   },
   "xo": {
     "extends": "prettier",
-    "plugins": [
-      "prettier"
-    ],
+    "plugins": ["prettier"],
     "parserOptions": {
       "sourceType": "script"
     },
