@@ -18,7 +18,7 @@ test('sets a custom logger instance', t => {
 
 test('returns early if user is not authenticated', t => {
   const ctx = {
-    req: { ip: 'a' },
+    ip: 'a',
     isAuthenticated: () => false,
     state: { user: {} }
   };
@@ -29,7 +29,7 @@ test('returns early if user is not authenticated', t => {
 
 test("returns early if the user's last ip has not changed", t => {
   const ctx = {
-    req: { ip: 'a' },
+    ip: 'a',
     isAuthenticated: () => true,
     state: { user: { ip: 'a', last_ips: [] } }
   };
@@ -40,7 +40,7 @@ test("returns early if the user's last ip has not changed", t => {
 
 test('sets user ip to current one', t => {
   const ctx = {
-    req: { ip: 'a' },
+    ip: 'a',
     isAuthenticated: () => true,
     state: {
       user: {
@@ -59,7 +59,7 @@ test('sets user ip to current one', t => {
 
 test('stores two consecutive IP addresses', t => {
   const ctx = {
-    req: { ip: 'a' },
+    ip: 'a',
     isAuthenticated: () => true,
     state: {
       user: {
@@ -72,7 +72,7 @@ test('stores two consecutive IP addresses', t => {
 
   const storeIPAddress = new StoreIPAddress();
   storeIPAddress.middleware(ctx, next);
-  ctx.req.ip = 'b';
+  ctx.ip = 'b';
   storeIPAddress.middleware(ctx, next);
   t.is(ctx.state.user.ip, 'b');
   t.deepEqual(ctx.state.user.last_ips, ['a', 'b']);
@@ -80,7 +80,7 @@ test('stores two consecutive IP addresses', t => {
 
 test('does not store duplicate IP addresses', t => {
   const ctx = {
-    req: { ip: 'a' },
+    ip: 'a',
     isAuthenticated: () => true,
     state: {
       user: {
