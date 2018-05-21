@@ -10,7 +10,12 @@ class StoreIPAddress {
   middleware(ctx, next) {
     // return early if the user is not authenticated
     // or if the user's last ip changed then don't do anything
-    if (!ctx.isAuthenticated() || ctx.state.user.ip === ctx.ip) return next();
+    if (
+      typeof ctx.isAuthenticated !== 'function' ||
+      !ctx.isAuthenticated() ||
+      ctx.state.user.ip === ctx.ip
+    )
+      return next();
 
     // set the user's IP to the current one
     // make sure the IP's saved are unique
