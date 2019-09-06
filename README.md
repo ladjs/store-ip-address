@@ -37,6 +37,8 @@ yarn add @ladjs/store-ip-address
 
 > With standard [logger][]:
 
+App:
+
 ```js
 const StoreIPAddress = require('@ladjs/store-ip-address');
 
@@ -46,7 +48,16 @@ const storeIPAddress = new StoreIPAddress();
 app.use(storeIPAddress.middleware);
 ```
 
+Mongoose user model:
+
+```js
+const storeIPAddress = new StoreIPAddress();
+User.plugin(storeIPAddress.plugin);
+```
+
 > With custom [logger][] instance:
+
+App:
 
 ```js
 const StoreIPAddress = require('@ladjs/store-ip-address');
@@ -56,6 +67,35 @@ const Logger = require('@ladjs/logger');
 
 const storeIPAddress = new StoreIPAddress({ logger: new Logger() });
 app.use(storeIPAddress.middleware);
+```
+
+> With custom fields to store on user model instead of `ip` and `last_ips`:
+
+App:
+
+```js
+const StoreIPAddress = require('@ladjs/store-ip-address');
+const Logger = require('@ladjs/logger');
+
+// ...
+
+const storeIPAddress = new StoreIPAddress({
+  ip: 'ip_address',
+  lastIps: 'last_ip_addresses'
+});
+
+app.use(storeIPAddress.middleware);
+```
+
+Mongoose user model:
+
+```js
+const storeIPAddress = new StoreIPAddress({
+  ip: 'ip_address',
+  lastIps: 'last_ip_addresses'
+});
+
+User.plugin(storeIPAddress.plugin);
 ```
 
 

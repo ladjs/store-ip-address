@@ -1,13 +1,33 @@
 const autoBind = require('auto-bind');
+const validator = require('validator');
 const debug = require('debug')('@ladjs/store-ip-address');
 
 class StoreIPAddress {
   constructor(config = {}) {
     autoBind(this);
 
-    this.config = Object.assign({ logger: console }, config);
+    this.config = { logger: console, ip: 'ip', lastIps: 'last_ips', ...config };
   }
-  middleware(ctx, next) {
+
+  plugin(schema) {
+    const obj = {};
+    obj[this.config.ip] = {
+      type: String,
+      trim: true,
+      validate: val => validator.isIP(val)
+    };
+    obj[this.config.lastIps] = [
+      {
+        type: String,
+        trim: true,
+        validate: val => validator.isIP(val)
+      }
+    ];
+    schema.add(obj);
+    return schema;
+  }
+
+  async middleware(ctx, next) {
     // return early if the user is not authenticated
     // or if the user's last ip changed then don't do anything
     if (
@@ -20,13 +40,17 @@ class StoreIPAddress {
     // set the user's IP to the current one
     // make sure the IP's saved are unique
     debug(`storing IP of ${ctx.ip} for user ${ctx.state.user.id}`);
-    ctx.state.user.ip = ctx.ip;
-    ctx.state.user.last_ips.push(ctx.ip);
-    ctx.state.user.last_ips = [...new Set(ctx.state.user.last_ips)];
-    ctx.state.user
-      .save()
-      .then()
-      .catch(this.config.logger.error);
+    ctx.state.user[this.config.ip] = ctx.ip;
+    if (Array.isArray(ctx.state.user[this.config.lastIps])) {
+      ctx.state.user[this.config.lastIps].push(ctx.ip);
+      ctx.state.user[this.config.lastIps] = [
+        ...new Set(ctx.state.user.last_ips)
+      ];
+    } else {
+      ctx.state.user[this.config.lastIps] = [ctx.ip];
+    }
+
+    ctx.state.user.save().catch(this.config.logger.error);
 
     return next();
   }

@@ -3,45 +3,76 @@
   "description": "Stores user's IP address in the background for Lad",
   "version": "0.0.5",
   "author": "Nick Baugh <niftylettuce@gmail.com> (http://niftylettuce.com/)",
+  "ava": {
+    "failFast": true,
+    "verbose": true,
+    "helpers": [
+      "test/helpers/**/*"
+    ]
+  },
   "bugs": {
     "url": "https://github.com/ladjs/store-ip-address/issues",
     "email": "niftylettuce@gmail.com"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "contributors": [
     "Nick Baugh <niftylettuce@gmail.com> (http://niftylettuce.com/)"
   ],
   "dependencies": {
-    "auto-bind": "^1.1.0",
-    "debug": "^3.1.0"
+    "auto-bind": "^2.1.0",
+    "debug": "^4.1.1",
+    "validator": "^11.1.0"
   },
   "devDependencies": {
-    "@ladjs/logger": "^0.0.8",
-    "ava": "^0.24.0",
-    "codecov": "^3.0.0",
-    "cross-env": "^5.1.1",
-    "eslint": "^4.13.1",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-prettier": "^2.3.1",
-    "husky": "^0.14.3",
-    "lint-staged": "^6.0.0",
-    "nyc": "^11.3.0",
-    "prettier": "^1.9.2",
-    "remark-cli": "^4.0.0",
-    "remark-preset-github": "^0.0.7",
-    "xo": "^0.19.0"
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "@ladjs/logger": "^0.1.0",
+    "ava": "^2.3.0",
+    "codecov": "^3.5.0",
+    "cross-env": "^5.2.1",
+    "eslint": "^6.3.0",
+    "eslint-config-xo-lass": "^1.0.3",
+    "fixpack": "^2.3.1",
+    "husky": "^3.0.5",
+    "lint-staged": "^9.2.5",
+    "mongoose": "^5.6.13",
+    "nyc": "^14.1.1",
+    "remark-cli": "^7.0.0",
+    "remark-preset-github": "^0.0.16",
+    "xo": "^0.24.0"
   },
   "engines": {
     "node": ">=8.3"
   },
   "homepage": "https://github.com/ladjs/store-ip-address",
-  "keywords": ["@ladjs/store-ip-address", "lass"],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm test",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "keywords": [
+    "@ladjs/store-ip-address",
+    "lass"
+  ],
   "license": "MIT",
   "lint-staged": {
-    "*.{js,jsx,mjs,ts,tsx,css,less,scss,json,graphql}": [
-      "prettier --write --single-quote --trailing-comma none",
+    "*.js": [
+      "xo --fix",
       "git add"
     ],
-    "*.md": ["remark . -qfo", "git add"]
+    "*.md": [
+      "remark . -qfo",
+      "git add"
+    ],
+    "package.json": [
+      "fixpack",
+      "git add"
+    ]
   },
   "main": "index.js",
   "nyc": {
@@ -49,10 +80,21 @@
     "lines": 100,
     "functions": 100,
     "branches": 100,
-    "reporter": ["lcov", "html", "text"]
+    "reporter": [
+      "lcov",
+      "html",
+      "text"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "bracketSpacing": true,
+    "trailingComma": "none"
   },
   "remarkConfig": {
-    "plugins": ["preset-github"]
+    "plugins": [
+      "preset-github"
+    ]
   },
   "repository": {
     "type": "git",
@@ -66,31 +108,10 @@
     "test-coverage": "cross-env NODE_ENV=test nyc ava"
   },
   "xo": {
-    "extends": "prettier",
-    "plugins": ["prettier"],
-    "parserOptions": {
-      "sourceType": "script"
-    },
-    "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "singleQuote": true,
-          "bracketSpacing": true,
-          "trailingComma": "none"
-        }
-      ],
-      "max-len": [
-        "error",
-        {
-          "code": 80,
-          "ignoreUrls": true
-        }
-      ],
-      "capitalized-comments": "off",
-      "camelcase": "off",
-      "no-warning-comments": "off"
-    },
-    "space": true
+    "prettier": true,
+    "space": true,
+    "extends": [
+      "xo-lass"
+    ]
   }
 }
