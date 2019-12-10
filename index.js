@@ -1,12 +1,11 @@
-const autoBind = require('auto-bind');
 const validator = require('validator');
 const debug = require('debug')('@ladjs/store-ip-address');
 
 class StoreIPAddress {
   constructor(config = {}) {
-    autoBind(this);
-
     this.config = { logger: console, ip: 'ip', lastIps: 'last_ips', ...config };
+    this.plugin = this.plugin.bind(this);
+    this.middleware = this.middleware.bind(this);
   }
 
   plugin(schema) {
@@ -31,6 +30,8 @@ class StoreIPAddress {
     // return early if the user is not authenticated
     // or if the user's last ip changed then don't do anything
     if (
+      typeof ctx.state.user !== 'object' ||
+      typeof ctx.state.user.save !== 'function' ||
       typeof ctx.isAuthenticated !== 'function' ||
       !ctx.isAuthenticated() ||
       ctx.state.user.ip === ctx.ip
@@ -50,7 +51,7 @@ class StoreIPAddress {
       ctx.state.user[this.config.lastIps] = [ctx.ip];
     }
 
-    ctx.state.user.save().catch(this.config.logger.error);
+    ctx.state.user = await ctx.state.user.save();
 
     return next();
   }
